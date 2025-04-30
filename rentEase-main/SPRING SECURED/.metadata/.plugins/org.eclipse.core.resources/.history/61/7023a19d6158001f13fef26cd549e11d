@@ -1,0 +1,38 @@
+package com.rentease.service;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.rentease.custom_exceptions.InvalidCategoryException;
+import com.rentease.dao.CategoryDao;
+import com.rentease.dto.CategoryDTO;
+import com.rentease.entities.Categories;
+import com.rentease.entities.Category;
+
+@Service
+@Transactional
+public class CategoryServiceImpl implements CategoryService {
+
+    @Autowired
+    private CategoryDao categoryDao;
+    
+    @Autowired
+    private ModelMapper mapper;
+
+    @Override
+    public CategoryDTO findCategoryByName(String categoryName) {
+        Categories categoryEnum;
+        try {
+            categoryEnum = Categories.valueOf(categoryName.toUpperCase());
+            System.out.println(categoryEnum);
+        } catch (IllegalArgumentException e) {
+            throw new InvalidCategoryException("Invalid category: " + categoryName);
+        }
+
+        Category category = categoryDao.findByTypeOfCategory(categoryEnum)
+                .orElseThrow(() -> new InvalidCategoryException("Category not found: " + categoryName));
+        return mapper.map(category, CategoryDTO.class);
+    }
+}

@@ -1,0 +1,14 @@
+package com.rentease.service;
+
+import java.util.List;
+
+import com.rentease.dto.ApiResponse;
+import com.rentease.dto.AvailabilityCheckDTO;
+import com.rentease.dto.BookingDTO;
+
+public interface BookingService {
+
+	public ApiResponse checkProductAvailability(AvailabilityCheckDTO availabilityCheckDTO);
+	
+	 public List<BookingDTO> getBookingsForLessee(Long lesseeId);
+}

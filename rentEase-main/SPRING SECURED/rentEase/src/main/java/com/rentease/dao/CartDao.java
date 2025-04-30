@@ -1,0 +1,12 @@
+package com.rentease.dao;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.rentease.entities.Cart;
+
+public interface CartDao extends JpaRepository<Cart, Long> {
+	Optional<Cart> findByLesseeId(Long lesseeId);
+
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="com.rentease.dto.SignupResponse"/>
+    <fullyQualifiedTypeName name="com.rentease.dto.SignupRequest"/>
+    <fullyQualifiedTypeName name="org.springframework.security.crypto.password.PasswordEncoder"/>
+    <fullyQualifiedTypeName name="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+    <fullyQualifiedTypeName name="org.springframework.context.annotation.Lazy"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="java.util.HashMap"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="com.rentease.dao.UserDao"/>
+    <fullyQualifiedTypeName name="com.rentease.entities.Users"/>
+    <fullyQualifiedTypeName name="com.rentease.custom_exceptions.ResourceNotFoundException"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="com.rentease.dto.CartItemDTO"/>
+    <fullyQualifiedTypeName name="java.time.LocalDate"/>
+    <fullyQualifiedTypeName name="com.rentease.dto.ProductDTO"/>
+    <fullyQualifiedTypeName name="com.rentease.dto.OrderSummaryDTO"/>
+    <fullyQualifiedTypeName name="com.rentease.entities.Role"/>
+    <fullyQualifiedTypeName name="com.rentease.security.CustomUserDetails"/>
+    <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
+    <fullyQualifiedTypeName name="com.rentease.dto.SigninResponse"/>
+    <fullyQualifiedTypeName name="org.apache.commons.io.FileUtils"/>
+    <fullyQualifiedTypeName name="org.springframework.web.server.ResponseStatusException"/>
+    <fullyQualifiedTypeName name="org.springframework.http.HttpStatus"/>
+</qualifiedTypeNameHistroy>

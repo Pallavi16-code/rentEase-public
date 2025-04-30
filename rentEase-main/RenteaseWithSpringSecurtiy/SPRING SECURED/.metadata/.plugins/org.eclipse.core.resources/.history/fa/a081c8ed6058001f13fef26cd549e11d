@@ -1,0 +1,10 @@
+package com.rentease.service;
+
+import com.rentease.dto.AddProductDTO;
+import com.rentease.entities.Cart;
+
+public interface CartService {
+//	Cart addProductToCart(Long lesseeId , Long productId);
+	public void addProductToCart(Long lesseeId, AddProductDTO dto);
+
+}

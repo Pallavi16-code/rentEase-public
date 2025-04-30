@@ -1,0 +1,126 @@
+-- Create Lessee table
+CREATE TABLE users (
+    userID INT AUTO_INCREMENT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    role VARCHAR(20),
+    Email VARCHAR(100) UNIQUE,
+    Password VARCHAR(255),
+    PhoneNumber VARCHAR(20),
+    dob DATE,
+    PhotoID VARCHAR(20),
+    Address VARCHAR(255),
+    City VARCHAR(100),
+    State VARCHAR(100),
+    Country VARCHAR(100),
+    PostalCode VARCHAR(20),
+    isDeleted INT(1) DEFAULT 0,
+    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UpdatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    Y1 varchar(200),
+    Y2 varchar(200)
+
+);
+
+
+
+--Create Cartitem table
+CREATE TABLE Cartitem(
+CartitemID INT AUTO_INCREMENT PRIMARY KEY,
+CartID INT,
+ProductID INT,
+Quantity INT,
+FOREIGN KEY (CartID) REFERENCES Cart(CartID),
+FOREIGN KEY (ProductID) REFERENCES Product(ProductID),
+Y1 varchar(200),
+Y2 varchar(200)
+);
+
+
+--Create Cart table
+CREATE TABLE Cart(
+CartID INT AUTO_INCREMENT PRIMARY KEY,
+LesseeID INT,
+FOREIGN KEY (LesseeID) REFERENCES users(role),
+Y1 varchar(200),
+Y2 varchar(200)
+);
+
+
+-- Create Product table
+CREATE TABLE Product (
+    ProductID INT AUTO_INCREMENT PRIMARY KEY,
+    CategoryID INT,
+    LessorID INT,
+    ReviewID INT,
+    Title VARCHAR(100),
+    Description TEXT,
+    Brand VARCHAR(50),
+    Model VARCHAR(50),
+    stateOfProduct VARCHAR(50),
+    Mfg DATE,
+    Rent DECIMAL(10, 2),
+    IncludedComponenets VARCHAR(200),
+    SecurityDeposit DECIMAL(10, 2),
+    CityAvailable VARCHAR(100),
+    ProfileImage VARCHAR(255),
+    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UpdatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (CategoryID) REFERENCES Category(CategoryID),
+    FOREIGN KEY (LessorID) REFERENCES users(role),
+    FOREIGN KEY (ReviewID) REFERENCES Reviews(ReviewID),
+     x1 varchar(200),
+      x2 varchar(200),
+       x3 varchar(200),
+        x4 varchar(200),
+         x5 varchar(200),
+          x6 varchar(200),
+           x7 varchar(200),
+            x8 varchar(200),
+             x9 varchar(200),
+              x10 varchar(200)
+);
+
+--create Reviews table
+CREATE TABLE Reviews(
+ReviewID INT,
+ProductID INT,
+LesseeID INT,
+Review VARCHAR(1500);
+FOREIGN KEY (ProductID) REFERENCES Product(ProductID),
+FOREIGN KEY (LesseeID) REFERENCES users(role),
+ Y1 varchar(200),
+ Y2 varchar(200)
+
+);
+
+-- Create Category table
+CREATE TABLE Category (
+    CategoryID INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(50) UNIQUE,
+    Description TEXT,
+    ImageURL VARCHAR(255),
+    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UpdatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    Y1 varchar(200),
+    Y2 varchar(200)
+
+);
+
+-- Create Bookings table
+CREATE TABLE Bookings (
+    BookingID INT AUTO_INCREMENT PRIMARY KEY,
+    LesseeID INT,
+    ProductID INT,
+    StartDate DATE,
+    EndDate DATE,
+    TotalPrice DECIMAL(10, 2),
+    BookingStatus ENUM('pending', 'confirmed', 'cancelled'),
+    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UpdatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (LesseeID) REFERENCES users(role),
+    FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
+    Y1 varchar(200),
+    Y2 varchar(200)
+
+);

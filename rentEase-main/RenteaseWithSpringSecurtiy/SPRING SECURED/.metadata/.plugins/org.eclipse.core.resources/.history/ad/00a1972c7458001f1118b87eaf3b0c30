@@ -1,0 +1,74 @@
+package com.rentease.service;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.rentease.custom_exceptions.NoBookingHistoryFoundException;
+import com.rentease.custom_exceptions.ResourceNotFoundException;
+import com.rentease.dao.BookingDao;
+import com.rentease.dao.CartItemDao;
+import com.rentease.dao.CategoryDao;
+import com.rentease.dao.ProductDao;
+import com.rentease.dao.UserDao;
+import com.rentease.dto.ApiResponse;
+import com.rentease.dto.AvailabilityCheckDTO;
+import com.rentease.dto.BookingDTO;
+import com.rentease.entities.Bookings;
+import com.rentease.entities.Product;
+
+
+@Service
+@Transactional
+public class BookingServiceImpl implements BookingService {
+	
+	@Autowired
+	private ProductDao productDao;
+   
+	@Autowired
+   private BookingDao bookingDao;
+	
+	@Autowired
+	private ModelMapper mapper;
+
+	@Override
+	public ApiResponse checkProductAvailability(AvailabilityCheckDTO availabilityCheckDTO) {
+		  // Fetch product by ID and check if it exists
+        Product product = productDao.findById(availabilityCheckDTO.getProductId())
+                .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
+
+        // Check if product is in the requested city
+        if (!product.getAvailableCity().equalsIgnoreCase(availabilityCheckDTO.getCity())) {
+            return new ApiResponse("Product not available in the requested city");
+        }
+
+        // Check if there is any booking that overlaps with the requested dates
+        boolean isAvailable = bookingDao
+                .findBookingsByProductIdAndDates(availabilityCheckDTO.getProductId(),
+                        availabilityCheckDTO.getStartDate(),
+                        availabilityCheckDTO.getEndDate()).isEmpty();
+
+        if (isAvailable) {
+            return new ApiResponse("Product is available");
+        } else {
+            return new ApiResponse("Product is not available during the requested dates");
+        }
+	}
+	
+	 
+
+	public List<BookingDTO> getBookingsForLessee(Long lesseeId) {
+        List<Bookings> bookings = bookingDao.findByLesseeId(lesseeId);
+        System.out.println(bookings);
+        return bookings.stream()
+                       .map((Bookings booking) -> mapper.map(booking, BookingDTO.class))
+                       .collect(Collectors.toList());
+    }
+}

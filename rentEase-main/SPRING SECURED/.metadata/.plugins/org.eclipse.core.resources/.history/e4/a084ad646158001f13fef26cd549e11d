@@ -1,0 +1,8 @@
+package com.rentease.service;
+
+import com.rentease.dto.CategoryDTO;
+import com.rentease.entities.Category;
+
+public interface CategoryService {
+	 CategoryDTO findCategoryByName(String categoryName);
+}

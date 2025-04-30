@@ -1,0 +1,71 @@
+package com.rentease.service;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.rentease.custom_exceptions.ResourceNotFoundException;
+import com.rentease.dao.CartDao;
+import com.rentease.dao.ProductDao;
+import com.rentease.dao.UserDao;
+import com.rentease.dto.AddProductDTO;
+import com.rentease.entities.Cart;
+import com.rentease.entities.Cartitem;
+import com.rentease.entities.Product;
+import com.rentease.entities.Users;
+import java.util.Optional;
+
+
+
+@Service
+@Transactional
+public class CartServiceImpl implements CartService {
+	
+	
+	
+	@Autowired
+	private CartDao cartDao;
+	
+	@Autowired
+	private ProductDao productDao;
+	
+	@Autowired
+	private UserDao userDao;
+	
+	@Autowired
+	private ModelMapper modelMapper;
+
+	@Override
+	public void addProductToCart(Long lesseeId, AddProductDTO dto) {
+		 Users lessee = userDao.findById(lesseeId)
+		            .orElseThrow(() -> new ResourceNotFoundException("Lessee not found"));
+
+		        Cart cart = lessee.getCart();
+		        if (cart == null) {
+		            cart = new Cart();
+		            cart.setLessee(lessee);
+		            lessee.setCart(cart);
+		        }
+
+		        Product product = productDao.findById(dto.getProductId())
+		            .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
+
+		        Cartitem cartItem = cart.getCartItems().stream()
+		            .filter(item -> item.getProduct().getId().equals(dto.getProductId()))
+		            .findFirst()
+		            .orElse(new Cartitem());
+
+		        cartItem.setCart(cart);
+		        cartItem.setProduct(product);
+		        cartItem.setQuantity(cartItem.getQuantity() + dto.getQuantity());
+
+		        cart.getCartItems().add(cartItem);
+
+		        cartDao.save(cart);
+		
+	}
+
+
+
+}

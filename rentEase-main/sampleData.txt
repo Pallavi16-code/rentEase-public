@@ -1,0 +1,92 @@
+USE rentease;
+
+-- Insert 10 Users
+INSERT INTO users (created_on, updated_on, address, city, country, is_deleted, dob, email, extra1, extra2, first_name, last_name, password, phone_no, photo_id, postal_code, role, state) VALUES
+(CURDATE(), NOW(), '123 Main St', 'City1', 'Country1', 0, '1990-01-01', 'user1@example.com', NULL, NULL, 'John', 'Doe', 'password1', '1234567890', 'ID1', 12345, 'LESSEE', 'State1'),
+(CURDATE(), NOW(), '456 Elm St', 'City2', 'Country1', 0, '1990-02-02', 'user2@example.com', NULL, NULL, 'Jane', 'Smith', 'password2', '1234567891', 'ID2', 12345, 'LESSOR', 'State2'),
+(CURDATE(), NOW(), '789 Oak St', 'City3', 'Country1', 0, '1990-03-03', 'user3@example.com', NULL, NULL, 'Jim', 'Beam', 'password3', '1234567892', 'ID3', 12345, 'ADMIN', 'State3'),
+(CURDATE(), NOW(), '101 Pine St', 'City4', 'Country1', 0, '1990-04-04', 'user4@example.com', NULL, NULL, 'Alice', 'Johnson', 'password4', '1234567893', 'ID4', 12345, 'LESSEE', 'State4'),
+(CURDATE(), NOW(), '202 Cedar St', 'City5', 'Country1', 0, '1990-05-05', 'user5@example.com', NULL, NULL, 'Bob', 'Brown', 'password5', '1234567894', 'ID5', 12345, 'LESSOR', 'State5'),
+(CURDATE(), NOW(), '303 Birch St', 'City6', 'Country1', 0, '1990-06-06', 'user6@example.com', NULL, NULL, 'Carol', 'White', 'password6', '1234567895', 'ID6', 12345, 'ADMIN', 'State6'),
+(CURDATE(), NOW(), '404 Spruce St', 'City7', 'Country1', 0, '1990-07-07', 'user7@example.com', NULL, NULL, 'David', 'Green', 'password7', '1234567896', 'ID7', 12345, 'LESSEE', 'State7'),
+(CURDATE(), NOW(), '505 Maple St', 'City8', 'Country1', 0, '1990-08-08', 'user8@example.com', NULL, NULL, 'Eva', 'Hall', 'password8', '1234567897', 'ID8', 12345, 'LESSOR', 'State8'),
+(CURDATE(), NOW(), '606 Willow St', 'City9', 'Country1', 0, '1990-09-09', 'user9@example.com', NULL, NULL, 'Frank', 'Clark', 'password9', '1234567898', 'ID9', 12345, 'ADMIN', 'State9'),
+(CURDATE(), NOW(), '707 Poplar St', 'City10', 'Country1', 0, '1990-10-10', 'user10@example.com', NULL, NULL, 'Grace', 'Lewis', 'password10', '1234567899', 'ID10', 12345, 'LESSEE', 'State10');
+
+-- Insert 10 Categories for Electronic Gadgets
+INSERT INTO categories (created_on, updated_on, category_photourl, category_description, category_type) VALUES
+(CURDATE(), NOW(), 'url1', 'Description1', 'Electronics1'),
+(CURDATE(), NOW(), 'url2', 'Description2', 'Electronics2'),
+(CURDATE(), NOW(), 'url3', 'Description3', 'Electronics3'),
+(CURDATE(), NOW(), 'url4', 'Description4', 'Electronics4'),
+(CURDATE(), NOW(), 'url5', 'Description5', 'Electronics5'),
+(CURDATE(), NOW(), 'url6', 'Description6', 'Electronics6'),
+(CURDATE(), NOW(), 'url7', 'Description7', 'Electronics7'),
+(CURDATE(), NOW(), 'url8', 'Description8', 'Electronics8'),
+(CURDATE(), NOW(), 'url9', 'Description9', 'Electronics9'),
+(CURDATE(), NOW(), 'url10', 'Description10', 'Electronics10');
+
+-- Insert 10 Products
+INSERT INTO products (created_on, updated_on, available_city, product_brand, components_included, product_description, product_mfg_date, product_model, product_name, product_imageurl, product_photo, product_availability, security_deposit, category_id, lessor_id) VALUES
+(CURDATE(), NOW(), 'City1', 'Brand1', 'Component1', 'Description1', '2020-01-01', 'Model1', 'Product1', 'url1', NULL, 'Available', 100.0, 1, 2),
+(CURDATE(), NOW(), 'City2', 'Brand2', 'Component2', 'Description2', '2020-02-01', 'Model2', 'Product2', 'url2', NULL, 'Available', 200.0, 2, 2),
+(CURDATE(), NOW(), 'City3', 'Brand3', 'Component3', 'Description3', '2020-03-01', 'Model3', 'Product3', 'url3', NULL, 'Available', 300.0, 3, 2),
+(CURDATE(), NOW(), 'City4', 'Brand4', 'Component4', 'Description4', '2020-04-01', 'Model4', 'Product4', 'url4', NULL, 'Available', 400.0, 4, 2),
+(CURDATE(), NOW(), 'City5', 'Brand5', 'Component5', 'Description5', '2020-05-01', 'Model5', 'Product5', 'url5', NULL, 'Available', 500.0, 5, 2),
+(CURDATE(), NOW(), 'City6', 'Brand6', 'Component6', 'Description6', '2020-06-01', 'Model6', 'Product6', 'url6', NULL, 'Available', 600.0, 6, 2),
+(CURDATE(), NOW(), 'City7', 'Brand7', 'Component7', 'Description7', '2020-07-01', 'Model7', 'Product7', 'url7', NULL, 'Available', 700.0, 7, 2),
+(CURDATE(), NOW(), 'City8', 'Brand8', 'Component8', 'Description8', '2020-08-01', 'Model8', 'Product8', 'url8', NULL, 'Available', 800.0, 8, 2),
+(CURDATE(), NOW(), 'City9', 'Brand9', 'Component9', 'Description9', '2020-09-01', 'Model9', 'Product9', 'url9', NULL, 'Available', 900.0, 9, 2),
+(CURDATE(), NOW(), 'City10', 'Brand10', 'Component10', 'Description10', '2020-10-01', 'Model10', 'Product10', 'url10', NULL, 'Available', 1000.0, 10, 2);
+
+-- Insert 10 Carts
+INSERT INTO cart (created_on, updated_on, extra1, extra2, lessee_id) VALUES
+(CURDATE(), NOW(), NULL, NULL, 1),
+(CURDATE(), NOW(), NULL, NULL, 2),
+(CURDATE(), NOW(), NULL, NULL, 3),
+(CURDATE(), NOW(), NULL, NULL, 4),
+(CURDATE(), NOW(), NULL, NULL, 5),
+(CURDATE(), NOW(), NULL, NULL, 6),
+(CURDATE(), NOW(), NULL, NULL, 7),
+(CURDATE(), NOW(), NULL, NULL, 8),
+(CURDATE(), NOW(), NULL, NULL, 9),
+(CURDATE(), NOW(), NULL, NULL, 10);
+
+-- Insert 10 Cart Items
+INSERT INTO cart_item (created_on, updated_on, extra1, extra2, quantity, cart_id, product_id) VALUES
+(CURDATE(), NOW(), NULL, NULL, 1, 1, 1),
+(CURDATE(), NOW(), NULL, NULL, 2, 2, 2),
+(CURDATE(), NOW(), NULL, NULL, 3, 3, 3),
+(CURDATE(), NOW(), NULL, NULL, 4, 4, 4),
+(CURDATE(), NOW(), NULL, NULL, 5, 5, 5),
+(CURDATE(), NOW(), NULL, NULL, 6, 6, 6),
+(CURDATE(), NOW(), NULL, NULL, 7, 7, 7),
+(CURDATE(), NOW(), NULL, NULL, 8, 8, 8),
+(CURDATE(), NOW(), NULL, NULL, 9, 9, 9),
+(CURDATE(), NOW(), NULL, NULL, 10, 10, 10);
+
+-- Insert 10 Reviews
+INSERT INTO reviews (created_on, updated_on, user_review, lessee_id, product_id) VALUES
+(CURDATE(), NOW(), 'Review1', 1, 1),
+(CURDATE(), NOW(), 'Review2', 2, 2),
+(CURDATE(), NOW(), 'Review3', 3, 3),
+(CURDATE(), NOW(), 'Review4', 4, 4),
+(CURDATE(), NOW(), 'Review5', 5, 5),
+(CURDATE(), NOW(), 'Review6', 6, 6),
+(CURDATE(), NOW(), 'Review7', 7, 7),
+(CURDATE(), NOW(), 'Review8', 8, 8),
+(CURDATE(), NOW(), 'Review9', 9, 9),
+(CURDATE(), NOW(), 'Review10', 10, 10);
+
+-- Insert 10 Bookings
+INSERT INTO bookings (created_on, updated_on, end_date, extra1, extra2, start_date, total_price, lessee_id, product_id) VALUES
+(CURDATE(), NOW(), CURDATE() + INTERVAL 10 DAY, NULL, NULL, CURDATE(), 200.0, 1, 1),
+(CURDATE(), NOW(), CURDATE() + INTERVAL 10 DAY, NULL, NULL, CURDATE(), 300.0, 2, 2),
+(CURDATE(), NOW(), CURDATE() + INTERVAL 10 DAY, NULL, NULL, CURDATE(), 400.0, 3, 3),
+(CURDATE(), NOW(), CURDATE() + INTERVAL 10 DAY, NULL, NULL, CURDATE(), 500.0, 4, 4),
+(CURDATE(), NOW(), CURDATE() + INTERVAL 10 DAY, NULL, NULL, CURDATE(), 600.0, 5, 5),
+(CURDATE(), NOW(), CURDATE() + INTERVAL 10 DAY, NULL, NULL, CURDATE(), 700.0, 6, 6),
+(CURDATE(), NOW(), CURDATE() + INTERVAL 10 DAY, NULL, NULL, CURDATE(), 800.0, 7, 7),
+(CURDATE(), NOW(), CURDATE() + INTERVAL 10 DAY, NULL, NULL, CURDATE(), 900.0, 8, 8),
+(CURDATE(), NOW(), CURDATE() + INTERVAL 10 DAY, NULL, NULL, CURDATE(), 1000.0, 9, 9),
+(CURDATE(), NOW(), CURDATE() + INTERVAL 10 DAY, NULL, NULL, CURDATE(), 1100.0, 10, 10);

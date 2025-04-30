@@ -1,0 +1,11 @@
+package com.rentease.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.rentease.entities.Categories;
+import com.rentease.entities.Category;
+import java.util.Optional;
+
+public interface CategoryDao extends JpaRepository<Category, Long> {
+	 Optional<Category> findByTypeOfCategory(Categories typeOfCategory);
+}

@@ -1,0 +1,37 @@
+
+apis-
+
+/bookings/lessee/check-availability
+/bookings/lessee/{lesseeId}
+/carts/lessee/addProduct
+/products/lessee
+/products/lessee/category/{categoryName}
+/products/lessee/brand/{brandName}
+/products/lessee/price/{prodPrice}
+/products/lessor/{lessorId}
+/products/lessor/addNewProd/{lessorId}
+/products/lessee/byProductId/{id}
+/products/admin/{productId}
+/products/lessor/{productId}/details
+/products/lessor/deletebylessor/{productId}
+/reviews/lessee/submit
+/users/profile/{id} -view
+/users/update/profile/{id} -update
+/users/lessee/detailsForBookingConfirmation
+/users/lessor/delete/{id}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
